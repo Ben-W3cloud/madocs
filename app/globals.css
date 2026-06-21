@@ -1,26 +1,536 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────────
+   AfricaZK design tokens — dual-theme.
+   Raw values live in :root (dark, default) and :root[data-theme=light].
+   @theme below points at the CSS vars so every Tailwind utility
+   (bg-bg-primary, text-text-secondary, etc.) flips at runtime when
+   data-theme on <html> changes.
+   ───────────────────────────────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --bg-base: #05080F;
+  --bg-primary: #080C14;
+  --bg-card: #0C1220;
+  --bg-card-hover: #101829;
+  --bg-subtle: #0F1520;
+  --bg-code: #0A0F1A;
+
+  /* Borders */
+  --border: #1A2540;
+  --border-bright: #1E3058;
+
+  /* Brand */
+  --green: #00C896;
+  --green-dim: rgba(0, 200, 150, 0.15);
+  --green-glow: rgba(0, 200, 150, 0.08);
+  --purple: #9945FF;
+  --purple-dim: rgba(153, 69, 255, 0.13);
+  --blue: #0EA5E9;
+
+  /* Text */
+  --text-primary: #EFF6FF;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+  --text-code: #7DD3FC;
+
+  /* Semantic */
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --info: #0EA5E9;
+
+  --success-tint: rgba(16, 185, 129, 0.08);
+  --error-tint: rgba(239, 68, 68, 0.08);
+  --warning-tint: rgba(245, 158, 11, 0.08);
+  --info-tint: rgba(14, 165, 233, 0.08);
+
+  /* Effect knobs (dampened in light mode) */
+  --glow-strength: 0.55;       /* drop-shadow on "ZK" + underline */
+  --mesh-opacity-green: 0.10;
+  --mesh-opacity-purple: 0.10;
+  --mesh-opacity-blue: 0.06;
+  --grid-line-opacity: 0.05;
+  --scrollbar-thumb: #1A2540;
+  --scrollbar-thumb-hover: #2A3A60;
+
+  /* Shadows */
+  --shadow-card: 0 0 0 1px var(--border), 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 0 0 1px var(--border-bright),
+    0 8px 32px rgba(0, 0, 0, 0.55);
+  --shadow-green: 0 0 40px rgba(0, 200, 150, 0.12);
+  --shadow-green-strong: 0 0 64px rgba(0, 200, 150, 0.22);
+  --shadow-purple: 0 0 40px rgba(153, 69, 255, 0.12);
+
+  /* Selection */
+  --selection-bg: rgba(0, 200, 150, 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Backgrounds — layered cool-whites, never pure white in sections that
+     alternate, so the design hierarchy survives losing the dark contrast. */
+  --bg-base: #F2F5FA;
+  --bg-primary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-subtle: #F6F9FD;
+  --bg-code: #F7F9FC;
+
+  /* Borders — much darker than dark mode to be visible on white */
+  --border: #E2E8F0;
+  --border-bright: #CBD5E1;
+
+  /* Brand — darker tints. The dark-mode green/purple are calibrated for
+     contrast against navy; on white they read pastel. Pull both toward
+     more saturated darker values so they hold weight on white. */
+  --green: #00A079;
+  --green-dim: rgba(0, 160, 121, 0.10);
+  --green-glow: rgba(0, 160, 121, 0.06);
+  --purple: #7C3AED;
+  --purple-dim: rgba(124, 58, 237, 0.10);
+  --blue: #0284C7;
+
+  /* Text — high-contrast slate, cool tilt */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-code: #0369A1;
+
+  /* Semantic — slightly darker to read on white */
+  --success: #059669;
+  --error: #DC2626;
+  --warning: #D97706;
+  --info: #0284C7;
+
+  --success-tint: rgba(5, 150, 105, 0.08);
+  --error-tint: rgba(220, 38, 38, 0.07);
+  --warning-tint: rgba(217, 119, 6, 0.07);
+  --info-tint: rgba(2, 132, 199, 0.07);
+
+  /* Effects — drop the dramatic glows; light mode reads polished, not "neon" */
+  --glow-strength: 0.18;
+  --mesh-opacity-green: 0.05;
+  --mesh-opacity-purple: 0.05;
+  --mesh-opacity-blue: 0.03;
+  --grid-line-opacity: 0.08;
+  --scrollbar-thumb: #CBD5E1;
+  --scrollbar-thumb-hover: #94A3B8;
+
+  /* Shadows — softer; rely on faint elevation, not heavy drops */
+  --shadow-card: 0 0 0 1px var(--border), 0 1px 2px rgba(15, 23, 42, 0.03),
+    0 4px 14px rgba(15, 23, 42, 0.05);
+  --shadow-card-hover: 0 0 0 1px var(--border-bright),
+    0 2px 4px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-green: 0 0 28px rgba(0, 160, 121, 0.08);
+  --shadow-green-strong: 0 0 40px rgba(0, 160, 121, 0.18);
+  --shadow-purple: 0 0 28px rgba(124, 58, 237, 0.08);
+
+  --selection-bg: rgba(0, 160, 121, 0.22);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─────────────────────────────────────────────────────────────────
+   Tailwind v4 theme — point every token at the runtime CSS var,
+   so utility classes (bg-bg-primary, text-green, border-border-bright,
+   shadow-card, etc.) automatically pick up the active theme.
+   ───────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Colors */
+  --color-bg-base: var(--bg-base);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-code: var(--bg-code);
+
+  --color-border: var(--border);
+  --color-border-bright: var(--border-bright);
+
+  --color-green: var(--green);
+  --color-green-dim: var(--green-dim);
+  --color-green-glow: var(--green-glow);
+  --color-purple: var(--purple);
+  --color-purple-dim: var(--purple-dim);
+  --color-blue: var(--blue);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-code: var(--text-code);
+
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  --color-success-tint: var(--success-tint);
+  --color-error-tint: var(--error-tint);
+  --color-warning-tint: var(--warning-tint);
+  --color-info-tint: var(--info-tint);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-green: var(--shadow-green);
+  --shadow-green-strong: var(--shadow-green-strong);
+  --shadow-purple: var(--shadow-purple);
+
+  /* Typography */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-lg: 17px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 38px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+  --text-hero: 72px;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular",
+    monospace;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Animations */
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s ease-in-out infinite;
+  --animate-grid-pan: grid-pan 28s linear infinite;
+  --animate-chevron-bounce: chevron-bounce 1.8s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-fade-in: fade-in 600ms ease-out both;
+  --animate-rise-in: rise-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Keyframes
+   ───────────────────────────────────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--green-dim);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 8px transparent;
   }
 }
 
+@keyframes shimmer {
+  0% { transform: translateX(-120%); }
+  60%, 100% { transform: translateX(220%); }
+}
+
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
+}
+
+@keyframes chevron-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes draw-underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes mesh-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -1%, 0) scale(1.03); }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-base);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--text-primary);
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: 2px solid var(--bg-primary);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Reusable composed classes
+   ───────────────────────────────────────────────────────────────── */
+
+@layer components {
+  .azk-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .azk-logo > .zk {
+    color: var(--green);
+    filter: drop-shadow(
+      0 0 14px rgba(0, 200, 150, calc(var(--glow-strength) * 0.7))
+    );
+  }
+  /* In light mode, "ZK" green pulled darker; tone glow to match */
+  :root[data-theme="light"] .azk-logo > .zk {
+    filter: drop-shadow(
+      0 0 10px rgba(0, 160, 121, calc(var(--glow-strength) * 0.5))
+    );
+  }
+
+  .azk-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    line-height: 1;
+  }
+
+  .azk-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: border-color 150ms ease, box-shadow 150ms ease,
+      background-color 150ms ease, transform 150ms ease;
+  }
+  .azk-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-bright);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Gradient mesh — opacities sourced from theme vars so light mode
+     stays whisper-quiet instead of muddying the page. */
+  .azk-mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        60% 50% at 20% 20%,
+        rgb(0 200 150 / var(--mesh-opacity-green)),
+        transparent 70%
+      ),
+      radial-gradient(
+        50% 45% at 85% 10%,
+        rgb(153 69 255 / var(--mesh-opacity-purple)),
+        transparent 70%
+      ),
+      radial-gradient(
+        70% 60% at 50% 100%,
+        rgb(14 165 233 / var(--mesh-opacity-blue)),
+        transparent 70%
+      );
+    animation: mesh-drift 18s ease-in-out infinite;
+    filter: blur(0.5px);
+  }
+
+  /* Grid overlay — single CSS var drives line opacity per theme */
+  .azk-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+        rgb(148 163 184 / var(--grid-line-opacity)) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgb(148 163 184 / var(--grid-line-opacity)) 1px,
+        transparent 1px
+      );
+    background-size: 80px 80px;
+    animation: var(--animate-grid-pan);
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  }
+
+  /* Shimmer on primary CTAs — kept white because the button stays green
+     in both themes, so a white sweep reads consistently. */
+  .azk-shimmer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.32) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    animation: var(--animate-shimmer);
+    pointer-events: none;
+  }
+
+  .azk-inline-code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    color: var(--text-code);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+
+  /* Hero "Identity" underline — drop-shadow uses theme glow var so the
+     light theme doesn't get a hazy green halo on white. */
+  .azk-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .azk-underline::after {
+    content: "";
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    bottom: -6px;
+    height: 6px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--green) 15%,
+      var(--green) 85%,
+      transparent
+    );
+    border-radius: 6px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: draw-underline 900ms 350ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    filter: drop-shadow(
+      0 0 12px rgba(0, 200, 150, calc(var(--glow-strength) * 0.8))
+    );
+  }
+  :root[data-theme="light"] .azk-underline::after {
+    filter: drop-shadow(
+      0 0 8px rgba(0, 160, 121, calc(var(--glow-strength) * 0.6))
+    );
+  }
+
+  /* Docs prose */
+  .azk-prose h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    scroll-margin-top: 96px;
+  }
+  .azk-prose h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    scroll-margin-top: 96px;
+  }
+  .azk-prose p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .azk-prose p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .azk-prose a {
+    color: var(--green);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--green) 40%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 150ms ease;
+  }
+  .azk-prose a:hover {
+    text-decoration-color: var(--green);
+  }
+  .azk-prose ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  .azk-prose ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  .azk-prose li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+  .azk-prose li::marker {
+    color: var(--green);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
