@@ -14,7 +14,6 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import VisibleBackground from "@/components/ui/VisibleBackground";
 import ShapeGrid from "@/animation/ShapeGrid";
 import SpotlightCard from "@/animation/SpotlightCard";
-
 type NodeColor = "white" | "green" | "purple";
 
 type FlowNode = {
@@ -97,13 +96,13 @@ export default function SolutionSection() {
       className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32"
     >
       <VisibleBackground className="absolute inset-0 -z-10 opacity-45 pointer-events-none">
-        <ShapeGrid
+       <ShapeGrid
           speed={0.35}
           squareSize={48}
           direction="right"
           shape="square"
           hoverTrailAmount={4}
-        />
+        /> 
       </VisibleBackground>
       <div className="mx-auto max-w-[1180px]">
         <div className="mx-auto max-w-2xl text-center">

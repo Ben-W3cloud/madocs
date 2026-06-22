@@ -27,15 +27,15 @@ const VISIONS: { icon: LucideIcon; title: string; body: string }[] = [
 
 export default function FutureSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-bg-subtle px-5 py-24 lg:px-8 lg:py-32">
-      <VisibleBackground className="absolute inset-0 -z-10 opacity-65">
-        <ShapeGrid
-          speed={0.35}
-          squareSize={48}
-          direction="diagonal"
-          shape="square"
-          hoverTrailAmount={5}
-        />
+    <section className="relative isolate overflow-hidden  px-5 py-24 lg:px-8 lg:py-32">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-75">
+                <ShapeGrid
+                  speed={0.35}
+                  squareSize={48}
+                  direction="diagonal"
+                  shape="square"
+                  hoverTrailAmount={5}
+                />
       </VisibleBackground>
 
       <div className="relative mx-auto max-w-[1100px]">

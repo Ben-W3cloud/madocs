@@ -36,14 +36,14 @@ export default function ArchitectureSection() {
   return (
     <section
       id="protocol"
-      className="relative isolate overflow-hidden bg-bg-subtle px-5 py-24 lg:px-8 lg:py-32"
+      className="relative isolate overflow-hidden px-5 py-24 lg:px-8 lg:py-32"
     >
       <VisibleBackground className="absolute inset-0 -z-10 opacity-70">
         <ShapeGrid
           speed={0.25}
           squareSize={56}
           direction="left"
-          shape="square"
+          shape="triangle"
           hoverTrailAmount={4}
         />
       </VisibleBackground>
