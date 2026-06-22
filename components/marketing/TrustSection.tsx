@@ -30,10 +30,10 @@ const ROWS: { knows: string; doesnt: string }[] = [
 
 export default function TrustSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32">
+    <section className="relative isolate overflow-hidden px-5 py-24 lg:px-8 lg:py-32">
       <VisibleBackground className="pointer-events-none absolute inset-0 -z-10 opacity-45">
         <ShapeGrid
-          speed={0.28}
+          speed={0.35}
           squareSize={50}
           direction="left"
           shape="square"

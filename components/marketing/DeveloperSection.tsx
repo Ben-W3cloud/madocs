@@ -98,11 +98,11 @@ export default function DeveloperSection() {
   return (
     <section
       id="developers"
-      className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32"
+      className="relative isolate overflow-hidden px-5 py-24 lg:px-8 lg:py-32"
     >
       <VisibleBackground className="pointer-events-none absolute inset-0 -z-10 opacity-45">
-        <div className="absolute right-[-12%] top-1/2 h-[620px] w-[620px] -translate-y-1/2">
-          <Orb hue={95} hoverIntensity={0.15} rotateOnHover={false} forceHoverState backgroundColor="#05080F" dpr={1.25} />
+        <div className="absolute right-[+15%] top-1/2 h-[620px] w-[620px] -translate-y-1/2">
+          <Orb hue={95} hoverIntensity={0.15} rotateOnHover={true} forceHoverState backgroundColor="#05080F" dpr={1.25} />
         </div>
       </VisibleBackground>
 

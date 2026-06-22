@@ -24,10 +24,10 @@ export default function Hero() {
           streakLength={1.0}
           glow={1.0}
           density={0.5}
-          twinkle={0.8}
-          zoom={2.5}
+          twinkle={0.4}
+          zoom={2.0}
           backgroundGlow={0.2}
-          opacity={theme === "light" ? 0.45 : 0.75}
+          opacity={theme === "light" ? 0.45 : 0.65}
           mouseInteraction
         />
       </VisibleBackground>
