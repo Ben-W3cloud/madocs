@@ -3,7 +3,7 @@ import Link from "next/link";
 type LogoSize = "header" | "hero" | "footer";
 
 const SIZE_PX: Record<LogoSize, number> = {
-  header: 22,
+  header: 28,
   footer: 18,
   hero: 48,
 };

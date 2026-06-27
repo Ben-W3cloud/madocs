@@ -28,7 +28,7 @@ const VISIONS: { icon: LucideIcon; title: string; body: string }[] = [
 export default function FutureSection() {
   return (
     <section className="relative isolate overflow-hidden  px-5 py-24 lg:px-8 lg:py-32">
-      <VisibleBackground className="absolute inset-0 -z-10 opacity-75">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-10">
                 <ShapeGrid
                   speed={0.35}
                   squareSize={48}
@@ -56,7 +56,7 @@ export default function FutureSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-xl border border-border bg-bg-card p-7"
+                className="group relative overflow-hidden rounded-xl border border-border/50 bg-bg-card p-7"
               >
                 <span
                   aria-hidden

@@ -29,8 +29,8 @@ const CHECKS = [
 
 export default function ZKExplainer() {
   return (
-    <section className="relative isolate overflow-hidden bg-bg-subtle px-5 py-24 lg:px-8 lg:py-32">
-      <VisibleBackground className="absolute inset-0 -z-10">
+    <section className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-10">
         <ShapeGrid
           speed={0.3}
           squareSize={50}
@@ -128,7 +128,7 @@ function ExplainerCard({
     >
       <SpotlightCard
         spotlightColor="rgba(0, 200, 150, 0.12)"
-        className="relative grid grid-cols-1 gap-6 rounded-xl border border-border bg-bg-card p-6 md:grid-cols-[64px_1fr] md:p-8 hover:shadow-card-hover transition-all duration-200"
+        className="relative grid grid-cols-1 gap-6 rounded-xl border border-border/50 bg-bg-card p-6 md:grid-cols-[64px_1fr] md:p-8 hover:shadow-card-hover transition-all duration-200"
       >
         <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-green/30 bg-green/10 text-green md:h-14 md:w-14">
           {icon}
@@ -151,7 +151,7 @@ function ChecksList() {
   return (
     <div
       ref={ref}
-      className="space-y-2 rounded-md border border-border bg-bg-code p-5 font-mono text-[13px]"
+      className="space-y-2 rounded-md border border-border/50 bg-bg-code p-5 font-mono text-[13px]"
     >
       {CHECKS.map((c, i) => (
         <motion.div

@@ -15,7 +15,7 @@
   /* Backgrounds */
   --bg-base: #05080F;
   --bg-primary: #080C14;
-  --bg-card: #0C1220;
+  --bg-card: rgb(12 18 32 / 0.9);
   --bg-card-hover: #101829;
   --bg-subtle: #0F1520;
   --bg-code: #0A0F1A;

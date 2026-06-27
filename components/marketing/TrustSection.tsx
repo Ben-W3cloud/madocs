@@ -31,7 +31,7 @@ const ROWS: { knows: string; doesnt: string }[] = [
 export default function TrustSection() {
   return (
     <section className="relative isolate overflow-hidden px-5 py-24 lg:px-8 lg:py-32">
-      <VisibleBackground className="pointer-events-none absolute inset-0 -z-10 opacity-45">
+      <VisibleBackground className="pointer-events-none absolute inset-0 -z-10 opacity-10">
         <ShapeGrid
           speed={0.35}
           squareSize={50}
@@ -50,9 +50,9 @@ export default function TrustSection() {
           </h2>
         </div>
 
-        <div className="mt-14 overflow-hidden rounded-xl border border-border bg-bg-card">
-          <div className="grid grid-cols-2 border-b border-border">
-            <div className="border-r border-border bg-green/[0.04] px-5 py-4 text-[13px] font-semibold uppercase tracking-widest text-green">
+        <div className="mt-14 overflow-hidden rounded-xl border border-border/50 bg-bg-card">
+          <div className="grid grid-cols-2 border-b border-border/50">
+            <div className="border-r border-border/50 bg-green/[0.04] px-5 py-4 text-[13px] font-semibold uppercase tracking-widest text-green">
               What AfricaZK Knows
             </div>
             <div className="bg-error/[0.04] px-5 py-4 text-[13px] font-semibold uppercase tracking-widest text-error">
@@ -64,10 +64,10 @@ export default function TrustSection() {
               <li
                 key={i}
                 className={`grid grid-cols-2 ${
-                  i < ROWS.length - 1 ? "border-b border-border" : ""
+                  i < ROWS.length - 1 ? "border-b border-border/50" : ""
                 }`}
               >
-                <div className="flex items-center gap-3 border-r border-border bg-green/[0.025] px-5 py-4 text-[14.5px] text-text-primary">
+                <div className="flex items-center gap-3 border-r border-border/50 bg-green/[0.025] px-5 py-4 text-[14.5px] text-text-primary">
                   <Check className="h-4 w-4 shrink-0 text-green" />
                   <span>{r.knows}</span>
                 </div>

@@ -38,7 +38,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Badge dot>Built and shipped on Solana</Badge>
+            <Badge dot>Built and Shipped on Solana Network</Badge>
           </motion.div>
 
           <motion.h1

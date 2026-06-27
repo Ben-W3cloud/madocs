@@ -38,7 +38,7 @@ export default function ArchitectureSection() {
       id="protocol"
       className="relative isolate overflow-hidden px-5 py-24 lg:px-8 lg:py-32"
     >
-      <VisibleBackground className="absolute inset-0 -z-10 opacity-70">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-10">
         <ShapeGrid
           speed={0.25}
           squareSize={56}
@@ -64,7 +64,7 @@ export default function ArchitectureSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="group relative overflow-hidden rounded-xl border border-border bg-bg-card p-7 transition-colors duration-200 hover:border-purple/40"
+              className="group relative overflow-hidden rounded-xl border border-border/50 bg-bg-card p-7 transition-colors duration-200 hover:border-purple/40"
             >
               <span
                 aria-hidden
@@ -79,7 +79,7 @@ export default function ArchitectureSection() {
               <p className="mt-3 text-[14.5px] leading-[1.7] text-text-secondary">
                 {p.body}
               </p>
-              <p className="mt-5 border-t border-border pt-4 font-mono text-[11.5px] text-text-muted">
+              <p className="mt-5 border-t border-border/50 pt-4 font-mono text-[11.5px] text-text-muted">
                 {p.footer}
               </p>
             </motion.div>

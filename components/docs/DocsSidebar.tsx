@@ -60,7 +60,7 @@ export default function DocsSidebar({
               />
             </button>
             {isOpen && (
-              <ul className="mt-3 flex flex-col gap-0.5 border-l border-border pl-3">
+              <ul className="mt-3 flex flex-col gap-0.5 border-l border-border/50 pl-3">
                 {section.items.map((it) => {
                   const active = pathname === it.href;
                   return (

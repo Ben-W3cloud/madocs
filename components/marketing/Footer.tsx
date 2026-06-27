@@ -16,7 +16,7 @@ const DEVELOPERS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-base px-5 py-16 lg:px-8">
+    <footer className="border-t border-border/40 bg-bg-base px-5 py-16 lg:px-8">
       <div className="mx-auto max-w-7xl opacity-80">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand */}
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-[12.5px] text-text-muted md:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-6 text-[12.5px] text-text-muted md:flex-row">
           <p>© 2025 AfricaZK · MIT License · Built at Hack4FUTO</p>
           <Logo size="footer" href={null} />
         </div>

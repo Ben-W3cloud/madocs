@@ -9,7 +9,7 @@ export type Param = {
 
 export default function ParamsTable({ rows }: { rows: Param[] }) {
   return (
-    <div className="my-6 overflow-hidden rounded-lg border border-border bg-bg-card">
+    <div className="my-6 overflow-hidden rounded-lg border border-border/50 bg-bg-card">
       <table className="w-full text-left text-[13.5px]">
         <thead className="bg-bg-base/50 text-[11.5px] uppercase tracking-widest text-text-muted">
           <tr>
@@ -57,7 +57,7 @@ export function SimpleTable({
   rows: ReactNode[][];
 }) {
   return (
-    <div className="my-6 overflow-x-auto rounded-lg border border-border bg-bg-card">
+    <div className="my-6 overflow-x-auto rounded-lg border border-border/50 bg-bg-card">
       <table className="w-full text-left text-[13.5px]">
         <thead className="bg-bg-base/50 text-[11.5px] uppercase tracking-widest text-text-muted">
           <tr>

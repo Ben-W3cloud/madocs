@@ -40,7 +40,7 @@ export default function Page() {
 
       <h2 id="who-is-this-for">Who is this for</h2>
       <div className="my-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-lg border border-border bg-bg-card p-5">
+        <div className="rounded-lg border border-border/50 bg-bg-card p-5">
           <p className="text-[13px] font-semibold uppercase tracking-widest text-green">
             For dApp Developers
           </p>
@@ -50,7 +50,7 @@ export default function Page() {
             verification pipeline from scratch.
           </p>
         </div>
-        <div className="rounded-lg border border-border bg-bg-card p-5">
+        <div className="rounded-lg border border-border/50 bg-bg-card p-5">
           <p className="text-[13px] font-semibold uppercase tracking-widest text-purple">
             For Protocol Builders
           </p>

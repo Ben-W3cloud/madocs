@@ -27,8 +27,8 @@ const PROBLEMS = [
 
 export default function ProblemSection() {
   return (
-    <section id="problem" className="relative isolate overflow-hidden bg-bg-subtle px-5 py-24 lg:px-8 lg:py-32">
-      <VisibleBackground className="absolute inset-0 -z-10">
+    <section id="problem" className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-10">
         <ShapeGrid
           speed={0.4}
           squareSize={40}
@@ -59,7 +59,7 @@ export default function ProblemSection() {
               >
                 <SpotlightCard
                   spotlightColor="rgba(239, 68, 68, 0.12)"
-                  className="relative overflow-hidden rounded-lg border border-border bg-bg-card p-6 transition-all duration-200 hover:border-error/40 hover:shadow-card-hover"
+                  className="relative overflow-hidden rounded-lg border border-border/50 bg-bg-card p-6 transition-all duration-200 hover:border-error/40 hover:shadow-card-hover"
                 >
                   <span className="pointer-events-none absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-error/0 via-error/60 to-error/0" />
                   <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md border border-error/30 bg-error-tint text-error">

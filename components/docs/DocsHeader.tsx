@@ -27,7 +27,7 @@ export default function DocsHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg-primary/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/40 bg-bg-primary/85 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 lg:px-8">
         <div className="flex items-center gap-4">
           <button
@@ -49,12 +49,12 @@ export default function DocsHeader() {
           </span>
         </div>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-2 md:flex">
           {NAV.map((it) => (
             <Link
               key={it.href}
               href={it.href}
-              className="rounded-md px-3 py-1.5 text-[13px] text-text-secondary transition-colors duration-150 hover:bg-bg-card hover:text-text-primary"
+              className="rounded-md px-4 py-2 text-[13px] text-text-secondary transition-colors duration-150 hover:bg-bg-card hover:text-text-primary"
             >
               {it.label}
             </Link>

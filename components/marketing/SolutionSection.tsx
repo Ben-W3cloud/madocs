@@ -95,7 +95,7 @@ export default function SolutionSection() {
       id="how-it-works"
       className="relative isolate overflow-hidden bg-bg-primary px-5 py-24 lg:px-8 lg:py-32"
     >
-      <VisibleBackground className="absolute inset-0 -z-10 opacity-45 pointer-events-none">
+      <VisibleBackground className="absolute inset-0 -z-10 opacity-10 pointer-events-none">
        <ShapeGrid
           speed={0.35}
           squareSize={48}
@@ -142,7 +142,7 @@ export default function SolutionSection() {
                   >
                     <SpotlightCard
                       spotlightColor={node.color === "green" ? "rgba(0, 200, 150, 0.12)" : node.color === "purple" ? "rgba(153, 69, 255, 0.12)" : "rgba(255, 255, 255, 0.10)"}
-                      className={`relative flex flex-1 flex-col items-center justify-start rounded-lg border bg-bg-card p-5 text-center transition-all duration-200 hover:shadow-card-hover ${c.ring}`}
+                      className={`relative flex flex-1 flex-col items-center justify-start rounded-lg border border-border/50 bg-bg-card p-5 text-center transition-all duration-200 hover:shadow-card-hover ${c.ring}`}
                       style={{ boxShadow: c.glow }}
                     >
                       <div
@@ -175,7 +175,7 @@ export default function SolutionSection() {
         `}</style>
 
         {/* What never moves callout */}
-        <div className="mx-auto mt-16 max-w-2xl rounded-xl  p-7 text-center backdrop-blur-sm transition-colors duration-200 hover:bg-bg-card/50 border border-border-bright">
+        <div className="mx-auto mt-16 max-w-2xl rounded-xl  p-7 text-center backdrop-blur-sm transition-colors duration-200 hover:bg-bg-card/50 border border-border-bright/50">
           <p className="text-[15px] leading-[1.6] text-text-secondary">
             <span className="text-text-primary font-medium">
               What never leaves your device:

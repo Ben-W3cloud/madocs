@@ -38,7 +38,7 @@ export default function DocPage({
         {prev ? (
           <Link
             href={prev.href}
-            className="group rounded-lg border border-border bg-bg-card p-4 transition-colors duration-150 hover:border-border-bright hover:bg-bg-card-hover"
+            className="group rounded-lg border border-border/50 bg-bg-card p-4 transition-colors duration-150 hover:border-border-bright hover:bg-bg-card-hover"
           >
             <p className="text-[11px] uppercase tracking-widest text-text-muted">
               ← Previous
@@ -53,7 +53,7 @@ export default function DocPage({
         {next ? (
           <Link
             href={next.href}
-            className="group rounded-lg border border-border bg-bg-card p-4 text-right transition-colors duration-150 hover:border-border-bright hover:bg-bg-card-hover sm:col-start-2"
+            className="group rounded-lg border border-border/50 bg-bg-card p-4 text-right transition-colors duration-150 hover:border-border-bright hover:bg-bg-card-hover sm:col-start-2"
           >
             <p className="text-[11px] uppercase tracking-widest text-text-muted">
               Next →
