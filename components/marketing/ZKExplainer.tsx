@@ -64,7 +64,7 @@ export default function ZKExplainer() {
             title="Your credential stays private"
             body={
               <>
-                When your NIN is confirmed by Dojah, AfricaZK creates a
+                When your NIN is confirmed by the provider, AfricaZK creates a
                 signed credential in your browser&apos;s memory. It contains
                 your verified facts — nationality, age, ID type. It is signed
                 with AfricaZK&apos;s EdDSA private key. It never leaves your
@@ -80,7 +80,7 @@ export default function ZKExplainer() {
               <>
                 A Groth16 ZK circuit runs inside your browser. It takes your
                 private credential and checks three things: Was this signed
-                by AfricaZK? Is the person 18 or older? Is the ID type valid?
+                by AfricaZK? Is the person eligible? Is the ID type valid?
                 If all three pass, it outputs a proof and a nullifier. Your
                 credential is then wiped from memory.
               </>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Black_Ops_One, Oswald } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,6 +12,20 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
+});
+
+const blackOpsOne = Black_Ops_One({
+  variable: "--font-black-ops-one",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const display = Inter({
@@ -65,18 +79,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#05080F" },
-    { media: "(prefers-color-scheme: light)", color: "#F2F5FA" },
-  ],
+  themeColor: { color: "#05080F" },
   width: "device-width",
   initialScale: 1,
 };
-
-// Runs in the document <head> before React hydrates. Picks the saved
-// preference (or system default) and writes data-theme on <html>, so the
-// page never flashes the wrong theme. Kept tiny and dependency-free.
-const THEME_INIT = `(function(){try{var s=localStorage.getItem('azk-theme');var t=s==='light'||s==='dark'?s:(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
 
 export default function RootLayout({
   children,
@@ -88,11 +94,8 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${display.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${blackOpsOne.variable} ${oswald.variable} ${display.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
-      </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased">
         {children}
       </body>

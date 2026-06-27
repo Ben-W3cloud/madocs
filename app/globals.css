@@ -2,14 +2,11 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 /* ─────────────────────────────────────────────────────────────────
-   AfricaZK design tokens — dual-theme.
-   Raw values live in :root (dark, default) and :root[data-theme=light].
+   Pridora design tokens — dark mode only.
+   Raw values live in :root (dark mode only).
    @theme below points at the CSS vars so every Tailwind utility
-   (bg-bg-primary, text-text-secondary, etc.) flips at runtime when
-   data-theme on <html> changes.
+   (bg-bg-primary, text-text-secondary, etc.) works consistently.
    ───────────────────────────────────────────────────────────────── */
 
 :root {
@@ -104,69 +101,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-:root[data-theme="light"] {
-  color-scheme: light;
 
-  /* Backgrounds — layered cool-whites, never pure white in sections that
-     alternate, so the design hierarchy survives losing the dark contrast. */
-  --bg-base: #F2F5FA;
-  --bg-primary: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #F8FAFC;
-  --bg-subtle: #F6F9FD;
-  --bg-code: #F7F9FC;
-
-  /* Borders — much darker than dark mode to be visible on white */
-  --border: #E2E8F0;
-  --border-bright: #CBD5E1;
-
-  /* Brand — darker tints. The dark-mode green/purple are calibrated for
-     contrast against navy; on white they read pastel. Pull both toward
-     more saturated darker values so they hold weight on white. */
-  --green: #00A079;
-  --green-dim: rgba(0, 160, 121, 0.10);
-  --green-glow: rgba(0, 160, 121, 0.06);
-  --purple: #7C3AED;
-  --purple-dim: rgba(124, 58, 237, 0.10);
-  --blue: #0284C7;
-
-  /* Text — high-contrast slate, cool tilt */
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
-  --text-code: #0369A1;
-
-  /* Semantic — slightly darker to read on white */
-  --success: #059669;
-  --error: #DC2626;
-  --warning: #D97706;
-  --info: #0284C7;
-
-  --success-tint: rgba(5, 150, 105, 0.08);
-  --error-tint: rgba(220, 38, 38, 0.07);
-  --warning-tint: rgba(217, 119, 6, 0.07);
-  --info-tint: rgba(2, 132, 199, 0.07);
-
-  /* Effects — drop the dramatic glows; light mode reads polished, not "neon" */
-  --glow-strength: 0.18;
-  --mesh-opacity-green: 0.05;
-  --mesh-opacity-purple: 0.05;
-  --mesh-opacity-blue: 0.03;
-  --grid-line-opacity: 0.08;
-  --scrollbar-thumb: #CBD5E1;
-  --scrollbar-thumb-hover: #94A3B8;
-
-  /* Shadows — softer; rely on faint elevation, not heavy drops */
-  --shadow-card: 0 0 0 1px var(--border), 0 1px 2px rgba(15, 23, 42, 0.03),
-    0 4px 14px rgba(15, 23, 42, 0.05);
-  --shadow-card-hover: 0 0 0 1px var(--border-bright),
-    0 2px 4px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-green: 0 0 28px rgba(0, 160, 121, 0.08);
-  --shadow-green-strong: 0 0 40px rgba(0, 160, 121, 0.18);
-  --shadow-purple: 0 0 28px rgba(124, 58, 237, 0.08);
-
-  --selection-bg: rgba(0, 160, 121, 0.22);
-}
 
 /* ─────────────────────────────────────────────────────────────────
    Tailwind v4 theme — point every token at the runtime CSS var,
@@ -228,11 +163,15 @@
   --text-6xl: 60px;
   --text-hero: 72px;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-oswald), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular",
     monospace;
-  --font-display: var(--font-display), var(--font-inter), ui-sans-serif,
+  --font-display: var(--font-black-ops-one), var(--font-oswald), ui-sans-serif,
     system-ui, sans-serif;
+  
+  /* Font families for new fonts */
+  --font-black-ops-one: var(--font-black-ops-one);
+  --font-oswald: var(--font-oswald);
 
   /* Radii */
   --radius-sm: 6px;
@@ -248,6 +187,7 @@
   --animate-spin-slow: spin 14s linear infinite;
   --animate-fade-in: fade-in 600ms ease-out both;
   --animate-rise-in: rise-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-marquee: marquee 30s linear infinite;
 }
 
 /* ─────────────────────────────────────────────────────────────────
@@ -300,6 +240,11 @@
   50% { transform: translate3d(2%, -1%, 0) scale(1.03); }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ─────────────────────────────────────────────────────────────────
    Base
    ───────────────────────────────────────────────────────────────── */
@@ -307,6 +252,20 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--bg-base);
+  scroll-snap-type: y mandatory;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
 }
 
 body {
@@ -613,39 +572,7 @@ body {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+/* Dark mode only - removed light mode completely */
 
 @layer base {
   * {

@@ -78,7 +78,7 @@ export default function ProblemSection() {
         </div>
 
         <p className="mx-auto mt-14 max-w-xl text-center text-[18px] text-text-secondary">
-          AfricaZK solves all three.{" "}
+          Pridora solves all three.{" "}
           <span className="relative inline-block text-text-primary">
             permanently
             <span className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full bg-green/80" />

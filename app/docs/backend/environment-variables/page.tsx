@@ -7,7 +7,7 @@ import CodeBlock from "@/components/ui/CodeBlock";
 export const metadata: Metadata = {
   title: "Environment Variables",
   description:
-    "Every environment variable required to run the AfricaZK backend, including Dojah and signing key configuration.",
+    "Every environment variable required to run the Pridora server, including Dojah and signing key configuration.",
 };
 
 const ENV_FILE = `# Dojah credentials
@@ -32,14 +32,14 @@ PORT=3001`;
 export default function Page() {
   return (
     <DocPage
-      eyebrow="Backend Reference"
+      eyebrow="Server Reference"
       title="Environment Variables"
       href="/docs/backend/environment-variables"
       intro={
         <>
           Every environment variable the AfricaZK backend reads at startup.
           Drop these into Railway, Fly, AWS Parameter Store, or your secret
-          manager of choice. The backend refuses to boot if any required
+          manager of choice. The server refuses to boot if any required
           variable is missing.
         </>
       }
@@ -87,7 +87,7 @@ export default function Page() {
 
       <h2 id="bootstrap-check">Bootstrap validation</h2>
       <p>
-        At startup the backend logs a one-line summary of which variables
+        At startup the server logs a one-line summary of which variables
         are present (never the values), then exits with code 1 if any
         required variable is missing. Watch the logs on first deploy:
       </p>

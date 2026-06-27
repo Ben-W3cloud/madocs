@@ -18,7 +18,7 @@ export default function Page() {
         <>
           AfricaZK is a Zero-Knowledge identity protocol for Solana. It allows
           any Solana application to verify that a user is a real, verified
-          Nigerian adult — without ever collecting, storing, or processing
+          Nigerian adult - without ever collecting, storing, or processing
           their personal data.
         </>
       }

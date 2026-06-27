@@ -17,7 +17,7 @@ const DEVELOPERS = [
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-bg-base px-5 py-16 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl opacity-80">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
@@ -35,25 +35,11 @@ export default function Footer() {
 
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-              Built At
+              Built
             </p>
             <ul className="mt-4 space-y-2 text-[13.5px] text-text-secondary">
-              <li>Hack4FUTO 2025</li>
-              <li className="text-text-muted">
-                Federal University of Technology Owerri
-              </li>
-              <li className="flex items-center gap-2 pt-2">
-                <span
-                  className="inline-block h-2 w-2 rounded-full bg-purple"
-                  style={{
-                    boxShadow:
-                      "0 0 8px color-mix(in oklab, var(--purple) 55%, transparent)",
-                  }}
-                />
-                <span className="font-mono text-[12px] text-text-muted">
-                  Solana · powered by ZK cryptography
-                </span>
-              </li>
+              <li>On The Solana Blockchain</li>
+              <li>With Zero-Knowledge Cryptography</li>
             </ul>
           </div>
         </div>

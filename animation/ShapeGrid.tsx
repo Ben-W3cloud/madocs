@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import { useTheme } from '@/lib/useTheme';
 
 type CanvasStrokeStyle = string | CanvasGradient | CanvasPattern;
 
@@ -35,7 +34,6 @@ const ShapeGrid: React.FC<ShapeGridProps> = ({
   const hoveredSquareRef = useRef<GridOffset | null>(null);
   const trailCells = useRef<GridOffset[]>([]);
   const cellOpacities = useRef<Map<string, number>>(new Map());
-  const theme = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -52,9 +50,9 @@ const ShapeGrid: React.FC<ShapeGridProps> = ({
         return { bg: '#05080F', border: '#1A2540', hover: 'rgba(0, 200, 150, 0.15)' };
       }
       const style = window.getComputedStyle(document.documentElement);
-      const bg = style.getPropertyValue('--bg-base').trim() || (theme === 'light' ? '#F2F5FA' : '#05080F');
-      const border = style.getPropertyValue('--border').trim() || (theme === 'light' ? '#E2E8F0' : '#1A2540');
-      const hover = style.getPropertyValue('--green-dim').trim() || (theme === 'light' ? 'rgba(0, 160, 121, 0.10)' : 'rgba(0, 200, 150, 0.15)');
+      const bg = style.getPropertyValue('--bg-base').trim() || '#05080F';
+      const border = style.getPropertyValue('--border').trim() || '#1A2540';
+      const hover = style.getPropertyValue('--green-dim').trim() || 'rgba(0, 200, 150, 0.15)';
       return { bg, border, hover };
     };
 
@@ -109,6 +107,9 @@ const ShapeGrid: React.FC<ShapeGridProps> = ({
       const colors = getThemeColors();
       const activeBorder = borderColor || colors.border;
       const activeHover = hoverFillColor || colors.hover;
+      
+      // Reduce overall opacity of the grid
+      ctx.globalAlpha = 0.35;
 
       if (isHex) {
         const colShift = Math.floor(gridOffset.current.x / hexHoriz);
@@ -236,6 +237,9 @@ const ShapeGrid: React.FC<ShapeGridProps> = ({
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Reset global alpha for other drawing operations
+      ctx.globalAlpha = 1;
     };
 
     const updateAnimation = () => {
@@ -415,7 +419,7 @@ const ShapeGrid: React.FC<ShapeGridProps> = ({
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount, theme]);
+  }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount]);
 
   return <canvas ref={canvasRef} className="w-full h-full border-none block"></canvas>;
 };

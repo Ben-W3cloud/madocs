@@ -34,7 +34,7 @@ const RES_200 = `{
 export default function Page() {
   return (
     <DocPage
-      eyebrow="Backend Reference"
+      eyebrow="Server Reference"
       title="POST /api/verify"
       href="/docs/backend/verify-endpoint"
       intro={
@@ -42,7 +42,7 @@ export default function Page() {
           The single endpoint exposed by the AfricaZK backend. It accepts a
           Nigerian ID and date of birth, confirms the ID through Dojah, and
           returns a signed credential. The SDK calls this for you — but if
-          you self-host the backend, this is the contract.
+          you self-host the server, this is the contract.
         </>
       }
     >
@@ -95,11 +95,11 @@ export default function Page() {
           ["400", "INVALID_INPUT", "idType, idNumber, or dob failed validation"],
           ["400", "DOJAH_FAILED", "Dojah could not confirm the ID"],
           ["429", "RATE_LIMITED", "Too many requests from this IP"],
-          ["500", "INTERNAL", "Backend or signing error"],
+          ["500", "INTERNAL", "Server or signing error"],
         ]}
       />
 
-      <h2 id="what-it-does">What the backend does internally</h2>
+      <h2 id="what-it-does">What the server does internally</h2>
       <ol>
         <li>Validates input shape and length.</li>
         <li>
@@ -133,21 +133,21 @@ export default function Page() {
         </li>
         <li>
           Returns the SignedCredential. <strong>Discards every input</strong>{" "}
-          — no logs, no DB writes, no analytics.
+          - no logs, no DB writes, no analytics.
         </li>
       </ol>
 
       <Callout kind="danger" title="Do not call this endpoint directly from your dApp">
         Use the SDK. It validates inputs, formats the credential, manages
         memory, and avoids exposing the raw network shape to your UI. The
-        backend may also rate-limit unrecognised user agents.
+        server may also rate-limit unrecognised user agents.
       </Callout>
 
       <h2 id="rate-limits">Rate limits</h2>
       <p>
-        The hosted backend enforces a per-IP limit of 10 verification
+        The hosted server enforces a per-IP limit of 10 verification
         attempts per hour and 60 per day. If you are running a high-traffic
-        dApp, self-host the backend — see{" "}
+        dApp, self-host the server - see{" "}
         <a href="/docs/backend/environment-variables">Environment Variables</a>{" "}
         for the required setup.
       </p>

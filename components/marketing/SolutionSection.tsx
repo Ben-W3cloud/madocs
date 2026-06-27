@@ -30,7 +30,7 @@ const NODES: FlowNode[] = [
   {
     icon: Server,
     label: "AfricaZK Backend",
-    sub: "Verifies with Dojah · Signs credential · Stores nothing",
+    sub: "Verifies with our KYC provider · Signs credential · Stores nothing",
     color: "green",
   },
   {
@@ -41,7 +41,7 @@ const NODES: FlowNode[] = [
   },
   {
     icon: Diamond,
-    label: "Solana",
+    label: "Anchor program",
     sub: "Verifies proof · Stores nullifier · Issues attestation",
     color: "purple",
   },
@@ -117,24 +117,32 @@ export default function SolutionSection() {
           </p>
         </div>
 
-        {/* Flow diagram */}
-        <div className="mt-16 overflow-x-auto overflow-y-hidden pb-2">
-          <div className="flex min-w-[1000px] items-stretch gap-2 px-2">
-            {NODES.map((node, i) => {
+        {/* Flow diagram - Infinite seamless carousel */}
+        <div className="mt-16 overflow-hidden relative">
+          <div
+            className="flex items-stretch gap-25 px-2"
+            style={{
+              animation: "marquee 20s linear infinite",
+              animationPlayState: "running",
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.animationPlayState = "paused"}
+            onMouseLeave={(e) => e.currentTarget.style.animationPlayState = "running"}
+          >
+            {[...NODES, ...NODES].map((node, i) => {
               const Icon = node.icon;
               const c = COLOR_CLASS[node.color];
               return (
-                <div key={node.label} className="flex flex-1 items-stretch">
+                <div key={`${node.label}-${i}`} className="flex-shrink-0 w-40">
                   <motion.div
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="flex flex-1 items-stretch"
+                    transition={{ duration: 0.45, delay: (i % NODES.length) * 0.08 }}
+                    className="flex flex-1 items-stretch h-full"
                   >
                     <SpotlightCard
                       spotlightColor={node.color === "green" ? "rgba(0, 200, 150, 0.12)" : node.color === "purple" ? "rgba(153, 69, 255, 0.12)" : "rgba(255, 255, 255, 0.10)"}
-                      className={`relative flex flex-1 flex-col w-40 items-center justify-start rounded-lg border bg-bg-card p-5 text-center transition-all duration-200 hover:shadow-card-hover ${c.ring}`}
+                      className={`relative flex flex-1 flex-col items-center justify-start rounded-lg border bg-bg-card p-5 text-center transition-all duration-200 hover:shadow-card-hover ${c.ring}`}
                       style={{ boxShadow: c.glow }}
                     >
                       <div
@@ -150,14 +158,21 @@ export default function SolutionSection() {
                       </p>
                     </SpotlightCard>
                   </motion.div>
-                  {i < NODES.length - 1 && (
-                    <FlowEdge label={EDGES[i].label} delay={i * 0.08 + 0.15} />
-                  )}
                 </div>
               );
             })}
           </div>
         </div>
+        <style jsx>{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
 
         {/* What never moves callout */}
         <div className="mx-auto mt-16 max-w-2xl rounded-xl  p-7 text-center backdrop-blur-sm transition-colors duration-200 hover:bg-bg-card/50 border border-border-bright">

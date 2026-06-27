@@ -34,7 +34,7 @@ export const DOCS_NAV: DocsSection[] = [
     ],
   },
   {
-    title: "Backend Reference",
+    title: "Server Reference",
     items: [
       { label: "POST /api/verify", href: "/docs/backend/verify-endpoint" },
       { label: "EdDSA Signing", href: "/docs/backend/eddsa-signing" },

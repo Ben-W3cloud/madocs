@@ -35,13 +35,13 @@ export default function Page() {
         The SDK POSTs the inputs to the AfricaZK backend over HTTPS. The
         backend calls Dojah&apos;s NIN or BVN endpoint, which talks to the
         canonical NIMC or CBN database. If the ID is real and the dob
-        matches, the backend continues; otherwise it returns a
+        matches, the server continues; otherwise it returns a
         verification-failed error.
       </p>
 
-      <h2 id="step-3">3. Backend hashes and signs</h2>
+      <h2 id="step-3">3. Server hashes and signs</h2>
       <p>
-        The backend computes{" "}
+        The server computes{" "}
         <span className="azk-inline-code">idHash = Poseidon(idNumber)</span>,
         derives <span className="azk-inline-code">age</span> from dob, builds{" "}
         <span className="azk-inline-code">
@@ -119,7 +119,7 @@ export default function Page() {
           and from there to Dojah.
         </li>
         <li>
-          <strong>Step 3:</strong> in the backend&apos;s memory for a few
+          <strong>Step 3:</strong> in the server's memory for a few
           milliseconds, never logged, never persisted.
         </li>
         <li>

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import GithubIcon from "@/components/shared/icons/GithubIcon";
 import Logo from "@/components/shared/Logo";
 import Button from "@/components/ui/Button";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const NAV = [
   { label: "How It Works", href: "/#how-it-works" },
@@ -58,7 +57,6 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle />
           <Button
             variant="ghost"
             size="sm"
@@ -125,10 +123,6 @@ export default function Header() {
                   <Button variant="primary" size="md" href="#">
                     Try the Demo
                   </Button>
-                  <div className="flex items-center justify-between rounded-md border border-border bg-bg-card/40 px-3 py-2 text-[13px] text-text-secondary">
-                    <span>Theme</span>
-                    <ThemeToggle />
-                  </div>
                 </div>
               </motion.div>
             </div>

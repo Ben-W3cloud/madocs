@@ -8,24 +8,24 @@ import CodeBlock from "@/components/ui/CodeBlock";
 export const metadata: Metadata = {
   title: "verifyIdentity()",
   description:
-    "Confirm a Nigerian ID with Dojah through the AfricaZK backend and receive a signed credential in memory.",
+    "Confirm a Nigerian ID with Dojah through the Pridora server and receive a signed credential in memory.",
 };
 
 const SIG = `verifyIdentity(options: VerifyOptions): Promise<SignedCredential>`;
 
 const CREDENTIAL_TYPE = `type SignedCredential = {
   idHash: string        // Poseidon(idNumber)
-  age: number           // computed by backend from dob
+  age: number           // computed by server from dob
   idType: 1 | 2         // 1 = NIN, 2 = BVN
   signature: {
     R8: [string, string]  // EdDSA point
     S: string             // EdDSA scalar
   }
-  Ax: string            // AfricaZK public key x
-  Ay: string            // AfricaZK public key y
+  Ax: string            // Pridora public key x
+  Ay: string            // Pridora public key y
 }`;
 
-const EXAMPLE = `import { verifyIdentity, generateProof } from '@africazk/identity'
+const EXAMPLE = `import { verifyIdentity, generateProof } from '@pridora/identity'
 
 try {
   const credential = await verifyIdentity({
@@ -47,8 +47,8 @@ export default function Page() {
       href="/docs/sdk/verify-identity"
       intro={
         <>
-          Confirm a user&apos;s Nigerian ID with Dojah through the AfricaZK
-          backend and receive a SignedCredential bundle. The credential lives
+          Confirm a user&apos;s Nigerian ID with Dojah through the Pridora
+          server and receive a SignedCredential bundle. The credential lives
           in browser memory only — pass it straight to{" "}
           <span className="azk-inline-code">generateProof()</span>.
         </>
@@ -84,7 +84,7 @@ export default function Page() {
             type: "string",
             required: false,
             description:
-              "Override the default AfricaZK backend URL. Useful for self-hosted backends or testing.",
+              "Override the default Pridora server URL. Useful for self-hosted servers or testing.",
           },
         ]}
       />
@@ -92,7 +92,7 @@ export default function Page() {
       <h2 id="returns">Returns</h2>
       <p>
         A <span className="azk-inline-code">SignedCredential</span> object —
-        a Poseidon-hashed ID plus AfricaZK&apos;s EdDSA signature over it.
+        a Poseidon-hashed ID plus Pridora's EdDSA signature over it.
       </p>
       <CodeBlock code={CREDENTIAL_TYPE} lang="ts" filename="SignedCredential" />
 
@@ -100,10 +100,10 @@ export default function Page() {
       <ol>
         <li>Validates idType, idNumber format, and dob.</li>
         <li>
-          Calls <span className="azk-inline-code">POST {`{backendUrl}`}/api/verify</span>{" "}
+          Calls <span className="azk-inline-code">POST {`{serverUrl}`}/api/verify</span>{" "}
           with the inputs over HTTPS.
         </li>
-        <li>Backend confirms the ID with Dojah and signs a credential.</li>
+        <li>Server confirms the ID with Dojah and signs a credential.</li>
         <li>Returns the SignedCredential to the browser.</li>
         <li>
           The credential lives in memory only — never persisted to disk,
@@ -128,8 +128,8 @@ export default function Page() {
             "Show user-facing error, allow retry",
           ],
           [
-            "Backend unreachable",
-            "Network error or backend down",
+            "Server unreachable",
+            "Network error or server down",
             "Retry with exponential backoff",
           ],
           [
@@ -145,9 +145,8 @@ export default function Page() {
 
       <Callout kind="warning" title="Do not store the credential">
         Pass the credential directly to{" "}
-        <span className="azk-inline-code">generateProof()</span>.{" "}
-        <span className="azk-inline-code">generateProof()</span> wipes it
-        from memory after the proof is generated. If you keep a reference
+        <span className="azk-inline-code">generateProof()</span>. 
+        If you keep a reference
         around, the credential lingers in memory until garbage collection.
       </Callout>
 
@@ -159,11 +158,11 @@ export default function Page() {
         </li>
         <li>
           <a href="/docs/backend/verify-endpoint">POST /api/verify</a> —
-          backend reference.
+          server reference.
         </li>
         <li>
           <a href="/docs/security/privacy">Privacy guarantees</a> — exactly
-          what the backend sees.
+          what the server sees.
         </li>
       </ul>
     </DocPage>

@@ -7,17 +7,15 @@ import Button from "@/components/ui/Button";
 import VisibleBackground from "@/components/ui/VisibleBackground";
 import HeroVisualCycler from "./HeroVisualCycler";
 import Lightfall from "@/animation/Lightfall";
-import { useTheme } from "@/lib/useTheme";
 
 export default function Hero() {
-  const theme = useTheme();
   return (
     <section className="relative isolate flex min-h-[100vh] items-center overflow-hidden pt-28 pb-24">
       <VisibleBackground className="absolute inset-0 -z-10 overflow-hidden">
         <Lightfall
           dpr={1.25}
-          colors={theme === "light" ? ["#00A079", "#7C3AED", "#0284C7"] : ["#00C896", "#9945FF", "#0EA5E9"]}
-          backgroundColor={theme === "light" ? "#F2F5FA" : "#05080F"}
+          colors={["#00C896", "#9945FF", "#0EA5E9"]}
+          backgroundColor="#05080F"
           speed={0.25}
           streakCount={3}
           streakWidth={1.2}
@@ -27,7 +25,7 @@ export default function Hero() {
           twinkle={0.4}
           zoom={2.0}
           backgroundGlow={0.2}
-          opacity={theme === "light" ? 0.45 : 0.65}
+          opacity={0.65}
           mouseInteraction
         />
       </VisibleBackground>
@@ -40,7 +38,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Badge dot>Built on Solana · Hack4FUTO 2025</Badge>
+            <Badge dot>Built and shipped on Solana</Badge>
           </motion.div>
 
           <motion.h1

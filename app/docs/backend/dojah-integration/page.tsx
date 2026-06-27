@@ -27,7 +27,7 @@ Content-Type: application/json
 export default function Page() {
   return (
     <DocPage
-      eyebrow="Backend Reference"
+      eyebrow="Server Reference"
       title="Dojah Integration"
       href="/docs/backend/dojah-integration"
       intro={
@@ -42,10 +42,10 @@ export default function Page() {
     >
       <h2 id="auth">Authentication</h2>
       <p>
-        Dojah requires two headers — an{" "}
+        Dojah requires two headers - an{" "}
         <span className="azk-inline-code">Authorization</span> token and an{" "}
         <span className="azk-inline-code">AppId</span>. Both come from a
-        Dojah account and are stored as backend environment variables.
+        Dojah account and are stored as server environment variables.
       </p>
 
       <h2 id="nin-endpoint">NIN endpoint</h2>
@@ -82,13 +82,13 @@ export default function Page() {
           [
             "401 / 403",
             "500 INTERNAL",
-            "Backend unreachable (SDK) — Dojah credentials misconfigured",
+            "Server unreachable (SDK) — Dojah credentials misconfigured",
           ],
           ["429", "429 RATE_LIMITED", "Rate limited (SDK)"],
           [
             "5xx",
             "500 INTERNAL",
-            "Backend unreachable (SDK) — retry with backoff",
+            "Server unreachable (SDK) — retry with backoff",
           ],
         ]}
       />
@@ -97,7 +97,7 @@ export default function Page() {
       <Callout kind="success" title="AfricaZK retains nothing">
         Dojah responses are processed in-memory, used to build one
         SignedCredential, then dropped when the request returns. The
-        backend writes no database row, no log line, and no analytics event
+        server writes no database row, no log line, and no analytics event
         containing the NIN, BVN, or any returned PII.
       </Callout>
 
